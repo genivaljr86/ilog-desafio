@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+        <h2>Cursos</h2>
+        <a ui-sref="course-add">Novo Curso</a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Carga Horária</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="course in courses" ui-sref="course-details(course)">
+                    <th scope="row">{{course.id}}</th>
+                    <th>{{course.title}}</th>
+                    <td>{{course.description}}</td>
+                    <td>{{course.workload}}</td>
+                    <td>R${{course.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+{
+  "profile": {
+    "name": "typicode"
+  },
+  "students": [
+    {
+      "id": 1,
+      "name": "João Doe 1",
+      "phone": "55523612113",
+      "address": "Rua Bocaiuva, 57",
+      "admission_date": "22/04/2012"
+    },
+    {
+      "id": 2,
+      "name": "Maria Doe 3",
+      "phone": "55478955632211",
+      "address": "Rua Nereu Rampos, 19",
+      "admission_date": "15/07/2001"
+    },
+    {
+      "name": "Teste",
+      "phone": "904932-094-02",
+      "address": "Teste",
+      "admission_date": "15/808/1999",
+      "id": 3
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Cypress 2",
+      "description": "Curso de automatização de testes E2E",
+      "workload": "240",
+      "value": "22.00"
+    },
+    {
+      "id": 2,
+      "title": "AngularJS",
+      "description": "Curso de programação JS+",
+      "workload": "480",
+      "value": "140.20"
+    },
+    {
+      "title": "Teste",
+      "description": "Teste Teste",
+      "workload": "2323",
+      "value": "4551213",
+      "id": 3
+    }
+  ]
+}

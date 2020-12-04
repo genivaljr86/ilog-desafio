@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+        <h2>Alunos</h2>
+        <a ui-sref="student-add">Novo Aluno</a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Data de Admissão</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="student in students" ui-sref="student-details(student)">
+                    <th scope="row">{{student.id}}</th>
+                    <th>{{student.name}}</th>
+                    <td>{{student.phone}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.admission_date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
