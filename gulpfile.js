@@ -1,12 +1,14 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync').create();
 const image = require('gulp-image');
+const babel = require('gulp-babel');
  
 const scripts = require('./scripts');
 const styles = require('./styles');
 // var gutil = require('gulp-util'); 
+
+const reload = browserSync.reload;
 
 gulp.task('css', function() {
     return gulp.src(styles)
@@ -19,15 +21,12 @@ gulp.task('css', function() {
  
 gulp.task('js', function() {
     return gulp.src(scripts)
-        .pipe(uglify())
-        // .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); }) // get more details on possible errors during uglify process
         .pipe(concat('scripts.js'))
+        .pipe(babel({ compact: false, presets: ['@babel/env'] }))
         .pipe(gulp.dest('./dist/assets/js'))
         .pipe(browserSync.reload({
             stream: true
         }));
-
-        // done()
 });
  
 gulp.task('image', function () {
@@ -56,21 +55,29 @@ gulp.task('build', gulp.series(['css', 'js', 'image', 'fonts', 'html']), functio
     // return gulp.start(['css', 'js', 'image', 'fonts', 'html'])
 });
  
-gulp.task('browser-sync', function() {
-    browserSync.init(null, {
+gulp.task('browser-sync', function(done) {
+    browserSync.init({
         open: false,
         server: {
             baseDir: 'dist',
         }
     });
+    done()
 });
+
+gulp.task('watch', function(done) {
+    gulp.watch('./src/assets/css/**/*.css', gulp.series(['css']));
+    gulp.watch('./src/assets/js/**/*.js', gulp.series(['js']));
+    gulp.watch('./src/app/**/*.js', gulp.series(['js']));
+    gulp.watch('./src/app/**/*.html', gulp.series(['html']));
+    done();
+});
+
+
  
-gulp.task('start', gulp.series(['build', 'browser-sync']), function(done) {
+gulp.task('start', gulp.series(['build', 'watch','browser-sync']), function(done) {
     devMode = true;
     // gulp.start(['build', 'browser-sync']);
-    gulp.watch(['./src/assets/css/**/*.css'], ['css']);
-    gulp.watch(['./src/assets/js/**/*.js'], ['js']);
-    gulp.watch(['./src/app/**/*.js'], ['js']);
-    gulp.watch(['./src/app/**/*.html'], ['html']);
+    
     done();
 });

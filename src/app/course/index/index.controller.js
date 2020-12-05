@@ -16,16 +16,14 @@
         vm.$onInit = function () {
             $scope.loading = true;
             CourseService.query()
-                .then(function (response) {
-                    console.log('response', response);
-                    $scope.courses = response.data;
-                    console.log('$scope.courses', $scope.courses);
+                .then(response => {
+                    $scope.courses = angular.copy(response.data);
 
                 })
-                .catch(function (response) {
+                .catch(response => {
                     //TODO: insert notification
                 })
-                .finally(function () {
+                .finally(() => {
                     $scope.loading = false;
 
                 })

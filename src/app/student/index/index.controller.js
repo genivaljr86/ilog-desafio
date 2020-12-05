@@ -4,33 +4,25 @@
 
     StudentIndexCtrl.$inject = [
         'StudentService',
-        '$scope',
-        '$http'
+        '$scope'
     ];
 
     function StudentIndexCtrl(
         StudentService,
-        $scope,
-        $http
+        $scope
     ) {
         var vm = this;
 
         vm.$onInit = function () {
             $scope.loading = true;
-            $http({
-                method: 'GET',
-                url: 'http://localhost:3004/students'
-            })
-                .then(function (response) {
-                    console.log('response', response);
-                    $scope.students = response.data;
-                    console.log('$scope.students', $scope.students);
-
+            StudentService.query()
+                .then(response => {
+                    $scope.students = angular.copy(response.data);
                 })
-                .catch(function (response) {
+                .catch(response => {
                     //TODO: insert notification
                 })
-                .finally(function () {
+                .finally(() => {
                     $scope.loading = false;
 
                 })
