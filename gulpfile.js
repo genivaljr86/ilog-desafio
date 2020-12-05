@@ -6,10 +6,10 @@ const image = require('gulp-image');
  
 const scripts = require('./scripts');
 const styles = require('./styles');
-var gutil = require('gulp-util'); 
+// var gutil = require('gulp-util'); 
 
 gulp.task('css', function() {
-    gulp.src(styles)
+    return gulp.src(styles)
         .pipe(concat('main.css'))
         .pipe(gulp.dest('./dist/assets/css'))
         .pipe(browserSync.reload({
@@ -18,18 +18,20 @@ gulp.task('css', function() {
 });
  
 gulp.task('js', function() {
-    gulp.src(scripts)
+    return gulp.src(scripts)
         .pipe(uglify())
-        .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); }) // get more details on possible errors during uglify process
+        // .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); }) // get more details on possible errors during uglify process
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest('./dist/assets/js'))
         .pipe(browserSync.reload({
             stream: true
         }));
+
+        // done()
 });
  
 gulp.task('image', function () {
-    gulp.src('./src/assets/img/*')
+    return gulp.src('./src/assets/img/*')
         .pipe(image())
         .pipe(gulp.dest('./dist/assets/img'))
         .pipe(browserSync.reload({
@@ -50,8 +52,8 @@ gulp.task('html', function() {
         }));
 });
  
-gulp.task('build', function() {
-    gulp.start(['css', 'js', 'image', 'fonts', 'html'])
+gulp.task('build', gulp.series(['css', 'js', 'image', 'fonts', 'html']), function(done) {
+    // return gulp.start(['css', 'js', 'image', 'fonts', 'html'])
 });
  
 gulp.task('browser-sync', function() {
@@ -63,11 +65,12 @@ gulp.task('browser-sync', function() {
     });
 });
  
-gulp.task('start', function() {
+gulp.task('start', gulp.series(['build', 'browser-sync']), function(done) {
     devMode = true;
-    gulp.start(['build', 'browser-sync']);
+    // gulp.start(['build', 'browser-sync']);
     gulp.watch(['./src/assets/css/**/*.css'], ['css']);
     gulp.watch(['./src/assets/js/**/*.js'], ['js']);
     gulp.watch(['./src/app/**/*.js'], ['js']);
     gulp.watch(['./src/app/**/*.html'], ['html']);
+    done();
 });
