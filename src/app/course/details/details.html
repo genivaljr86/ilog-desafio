@@ -17,6 +17,21 @@
                 <label>Valor</label>
                 <input type="text" data-ng-model="record.value" class="form-control">
             </div>
+            <div class="form-group">
+                <label>Alunos Matriculados</label>
+                <select class="form-control" id="exampleFormControlSelect1" data-ng-model="studentSelected">
+                    <option data-ng-repeat="student in students" ng-value="student">{{student.name}}</option>
+                </select>
+                <button type="button" class="btn btn-default" data-ng-click="insertStudent(studentSelected)">Inserir</button>
+                <ul class="list-group">
+                    <li class="list-group-item" 
+                    data-ng-repeat="student in record.students"
+                    data-ng-click="removeStudent($index)">
+                        {{student.name}}
+                    </li>
+                </ul>
+            </div>
+
             <button type="submit" class="btn btn-primary">Salvar</button>
             <button type="button" ui-sref="course-index" class="btn btn-link">Voltar</button>
         </form>
