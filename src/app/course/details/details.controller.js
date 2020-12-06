@@ -26,13 +26,7 @@
             "description": "",
             "workload": "",
             "value": "",
-            "studentsIds": []
-        }
-
-        const handleStudentSelecteds = function(students){
-            return students.map(function(student){
-                return student.id
-            })
+            "students": []
         }
 
         vm.$onInit = function () {
@@ -40,58 +34,43 @@
 
             $scope.selectedStudents = [];
 
-            $q.all({
-                course: CourseService.get($state.params.id) || [],
-                students: StudentService.query()
-            })
-            .then(function (responses) {
-                $scope.record = isCreate ? record : responses.course.data;
-                $scope.students = responses.students.data;
-                /**
-                 * @todo Refactor with Lodash
-                 */
-                // $scope.selectedStudents = $scope.record.studentsIds.map(function(row){
-                //     angular.forEach($scope.students, function(student){
-                //         if(student.id == row){
-                //             row = student;
-                //         }
-                //     })
-                //     return row;
-                // })
-                
+            $q
+                .all({
+                    course: isCreate ? [] : CourseService.get($state.params.id),
+                    students: StudentService.query()
+                })
+                .then(responses => {
+                    $scope.record = isCreate ? record : angular.copy(responses.course.data);
+                    $scope.students = responses.students.data;
+                })
+                .catch(response => {
+                    //TODO: insert notification
+                })
+                .finally(() => {
+                    $scope.loading = false;
+                });
 
-            })
-            .catch(function (response) {
-                //TODO: insert notification
-            })
-            .finally(function () {
-                $scope.loading = false;
-            });
-
-            $scope.insertStudent = function(student){
+            $scope.insertStudent = student => {
                 $scope.record.students.push(student);
             }
 
-            $scope.removeStudent = function(index){
-                $scope.record.students.splice(index,1);
+            $scope.removeStudent = index => {
+                $scope.record.students.splice(index, 1);
             }
 
-            $scope.submit = function (record) {
+            $scope.submit = record => {
                 vm.loading = true;
 
-                // record.studentsIds = handleStudentSelecteds($scope.selectedStudents);
-
                 CourseService[isCreate ? 'insert' : 'update'](record)
-                    .then(function (response) {
-                        $state.go("course-index")
-
+                    .then(response => {
+                        $state.go("course-index");
                     })
-                    .catch(function (response) {
-                        alert('ERRO!')
+                    .catch(response => {
+                        alert('ERRO!');
                     })
-                    .finally(function () {
+                    .finally(() => {
                         $scope.loading = false;
-                    })
+                    });
             }
         }
     };

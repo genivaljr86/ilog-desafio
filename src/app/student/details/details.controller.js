@@ -5,47 +5,61 @@
     StudentDetailsCtrl.$inject = [
         'StudentService',
         '$scope',
-        '$state'
+        '$state',
+        '$q'
     ];
 
     function StudentDetailsCtrl(
         StudentService,
         $scope,
-        $state
+        $state,
+        $q
     ) {
         var vm = this;
+        
         const isCreate = !angular.isDefined($state.params.id);
+
+        const record = {
+            "id": null,
+            "name": "",
+            "phone": "",
+            "address": "",
+            "admission_date": ""
+
+        }
 
         vm.$onInit = function () {
             vm.loading = true;
 
-
-            StudentService.get($state.params.id)
-                .then(function (response) {
-                    $scope.record = angular.copy(response.data);
+            $q
+                .all({
+                    student: isCreate ? [] : StudentService.get($state.params.id)
+                })
+                .then(response => {
+                    $scope.record = isCreate ? record : angular.copy(response.student.data);
 
                 })
-                .catch(function (response) {
+                .catch(response => {
                     //TODO: insert notification
                 })
-                .finally(function () {
+                .finally(() => {
                     $scope.loading = false;
                 })
 
-            $scope.submit = function (record) {
+            $scope.submit = (record) => {
                 vm.loading = true;
 
                 StudentService[isCreate ? 'insert' : 'update'](record)
-                    .then(function (response) {
-                        $state.go("student-index")
+                    .then(response => {
+                        $state.go("student-index");
 
                     })
-                    .catch(function (response) {
-                        alert('ERRO!')
+                    .catch(response => {
+                        alert('ERRO!');
                     })
-                    .finally(function () {
+                    .finally(() => {
                         $scope.loading = false;
-                    })
+                    });
             }
         }
 
