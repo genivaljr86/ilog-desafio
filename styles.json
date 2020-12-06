@@ -1,6 +1,7 @@
 [
-    "./src/assets/css/**/*.css",
     "./node_modules/bootstrap/dist/css/bootstrap.css",
-    "./node_modules/font-awesome/css/font-awesome.css",
+    "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+    "./src/assets/css/**/*.css",
+    "./src/assets/scss/**/*.scss",
     "./src/assets/css/style.css"
 ]

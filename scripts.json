@@ -3,5 +3,6 @@
     "./node_modules/@uirouter/angularjs/release/angular-ui-router.js",
     "./node_modules/angular-route/angular-route.js",
     "./node_modules/jquery/dist/jquery.min.js",
+    "./node_modules/bootstrap/dist/js/bootstrap.js",
     "./src/app/**/*.js"
 ]
