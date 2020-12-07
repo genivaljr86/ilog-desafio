@@ -25,7 +25,10 @@ gulp.task('sass', function () {
     return gulp.src(styles)
         .pipe(concat('main.scss'))
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./dist/assets/css'));
+        .pipe(gulp.dest('./dist/assets/css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 })
 
 gulp.task('js', function () {
@@ -65,7 +68,6 @@ gulp.task('html', function () {
 });
 
 gulp.task('build', gulp.series(['sass', 'js', 'image', 'fonts', 'html']), function (done) {
-    // return gulp.start(['css', 'js', 'image', 'fonts', 'html'])
 });
 
 gulp.task('browser-sync', function (done) {

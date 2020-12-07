@@ -6,17 +6,19 @@
         'StudentService',
         '$scope',
         '$state',
-        '$q'
+        '$q',
+        '$http',
     ];
 
     function StudentDetailsCtrl(
         StudentService,
         $scope,
         $state,
-        $q
+        $q,
+        $http,
     ) {
         var vm = this;
-        
+
         const isCreate = !angular.isDefined($state.params.id);
 
         const record = {
@@ -28,8 +30,21 @@
 
         }
 
+        const handleAddress = address => {
+            return _.values(_.pick(address, ['road', 'suburb', 'city', 'state'])).join(", ")
+        }
+
         vm.$onInit = function () {
+
             vm.loading = true;
+
+            $scope.modelOptions = {
+                debounce: {
+                    default: 500,
+                    blur: 250
+                },
+                getterSetter: true
+            };
 
             $q
                 .all({
@@ -46,6 +61,14 @@
                     $scope.loading = false;
                 })
 
+            $scope.searchAddress = query => {
+                return $http.get('https://nominatim.openstreetmap.org/search.php?q=' + query + '&format=jsonv2&addressdetails=1')
+                    .then(function (response) {
+                        return response.data.map(function (item) {
+                            return handleAddress(item.address)
+                        });
+                    });
+            };
             $scope.submit = (record) => {
                 vm.loading = true;
 
@@ -55,12 +78,26 @@
 
                     })
                     .catch(response => {
-                        alert('ERRO!');
+                        alert(response.message);
                     })
                     .finally(() => {
                         $scope.loading = false;
                     });
             }
+
+            $scope.remove = id => {
+                $scope.loading = true;
+
+                StudentService.remove($state.params.id)
+                    .then(response => {
+                        $state.go("student-index");
+                    })
+                    .finally(() => {
+                        $scope.loading = false;
+                    })
+            }
+
+
         }
 
     };

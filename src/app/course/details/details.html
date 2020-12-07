@@ -1,57 +1,57 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <!-- <h1 class="h3 mb-0 text-gray-800">Alunos</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
 </div>
 <div class="row">
     <div class="col-xl-12">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
+            <!-- Card Header -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Detalhes do Curso</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
                 <form data-ng-submit="submit(record)">
-                    <div class="form-group">
-                        <label>Titulo</label>
-                        <input type="text" data-ng-model="record.title" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Descrição</label>
-                        <input type="text" data-ng-model="record.description" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>Carga Horária</label>
-                        <input type="text" data-ng-model="record.workload" class="form-control" ui-number-mask="0"  ui-hide-group-sep>
-                    </div>
-                    <div class="form-group">
-                        <label>Valor</label>
-                        <input type="text" data-ng-model="record.value" class="form-control" ui-number-mask="2"">
-                    </div>
-                    <div class="form-group">
-                        <label>Alunos Matriculados</label>
-                        <!-- <select class="form-control" id="exampleFormControlSelect1" data-ng-model="studentSelected">
-                            <option data-ng-repeat="student in students" ng-value="student">{{student.name}}</option>
-                        </select> -->
-                        <input type="text" class="form-control"
-                         ng-model="studentSelected"
-                         ng-model-options="modelOptions" 
-                         uib-typeahead="student as student.name for student in searchStudent($viewValue)" 
-                         >
-                        <button type="button" class="btn btn-default"
-                            data-ng-click="insertStudent(studentSelected)">Inserir</button>
-                    </div>
-                    <div>
-                        <h5>
-                            <span class="badge badge-secondary" data-ng-repeat="student in record.students">
-                                {{student.name}} 
-                                <i data-ng-click="removeStudent($index)" class="fa fa-times"></i>
-                            </span>
-                        </h5>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Titulo</label>
+                                <input type="text" data-ng-model="record.title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <input type="text" data-ng-model="record.description" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Carga Horária</label>
+                                <input type="text" data-ng-model="record.workload" class="form-control" ui-number-mask="0"  ui-hide-group-sep>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor</label>
+                                <input type="text" data-ng-model="record.value" class="form-control" ui-number-mask="2"">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Alunos Matriculados</label>
+                                <h5>
+                                    <span class="badge badge-secondary margin-r-10" data-ng-repeat="student in record.students">
+                                        {{student.name}}
+                                        <i data-ng-click="removeStudent($index)" class="fa fa-times hover"></i>
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    ng-model="studentSelected"
+                                    ng-model-options="modelOptions" 
+                                    uib-typeahead="student as student.name for student in searchStudent($viewValue)"
+                                    typeahead-on-select="selectStudent($item);"
+                                    placeholder="Adicione mais alunos">
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-danger" data-ng-click="remove()">Excluir</button>
                     <button type="button" ui-sref="course-index" class="btn btn-link">Voltar</button>
                 </form>
             </div>

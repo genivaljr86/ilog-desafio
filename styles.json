@@ -1,6 +1,7 @@
 [
     "./node_modules/bootstrap/dist/css/bootstrap.css",
     "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+    "./node_modules/sweetalert2/dist/sweetalert2.css",
     "./src/assets/css/**/*.css",
     "./src/assets/scss/**/*.scss",
     "./src/assets/css/style.css"

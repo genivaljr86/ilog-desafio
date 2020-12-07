@@ -5,38 +5,17 @@
   "students": [
     {
       "id": 1,
-      "name": "João Doe 1",
-      "phone": "55523612113",
-      "address": "Rua Bocaiuva, 57",
-      "admission_date": "22/04/2018"
+      "name": "John Doe",
+      "phone": "4898855122",
+      "address": "Rodovia Mário Covas, Coqueiro, Ananindeua, Pará",
+      "admission_date": "1986-12-30T02:00:00.000Z"
     },
     {
       "id": 2,
-      "name": "Maria Doe 3",
-      "phone": "55478955632211",
-      "address": "Rua Nereu Rampos, 19",
-      "admission_date": "15/07/2001"
-    },
-    {
-      "id": 3,
-      "name": "Teste",
-      "phone": "904932-094-02",
-      "address": "Teste",
-      "admission_date": "15/808/1999"
-    },
-    {
-      "name": "Fulano",
-      "phone": "01293-01923-0",
-      "address": "Cdslakçlsdk",
-      "admission_date": "12/45/489",
-      "id": 4
-    },
-    {
-      "id": 5,
-      "name": "Foo",
-      "phone": "465456",
-      "address": "5456464",
-      "admission_date": "5645646"
+      "name": "Maria Doe",
+      "phone": "11145132132",
+      "address": "Rua Presidente Nereu Ramos, Centro, Lages, Santa Catarina",
+      "admission_date": "2019-01-12T02:00:00.000Z"
     }
   ],
   "courses": [
@@ -46,7 +25,22 @@
       "description": "Curso de automatização de testes E2E",
       "workload": "240",
       "value": "22.00",
-      "students": []
+      "students": [
+        {
+          "id": 1,
+          "name": "John Doe",
+          "phone": "4898855122",
+          "address": "Rodovia Mário Covas, Coqueiro, Ananindeua, Pará",
+          "admission_date": "1986-12-30T02:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "name": "Maria Doe",
+          "phone": "11145132132",
+          "address": "Rua Presidente Nereu Ramos, Centro, Lages, Santa Catarina",
+          "admission_date": "2019-01-12T02:00:00.000Z"
+        }
+      ]
     },
     {
       "id": 2,
@@ -56,34 +50,11 @@
       "value": "140.20",
       "students": [
         {
-          "id": 1,
-          "name": "João Doe 1",
-          "phone": "55523612113",
-          "address": "Rua Bocaiuva, 57",
-          "admission_date": "22/04/2012"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Teste",
-      "description": "Teste Teste",
-      "workload": "2323",
-      "value": "4551213",
-      "students": [
-        {
           "id": 2,
-          "name": "Maria Doe 3",
-          "phone": "55478955632211",
-          "address": "Rua Nereu Rampos, 19",
-          "admission_date": "15/07/2001"
-        },
-        {
-          "id": 1,
-          "name": "João Doe 1",
-          "phone": "55523612113",
-          "address": "Rua Bocaiuva, 57",
-          "admission_date": "22/04/2012"
+          "name": "Maria Doe",
+          "phone": "11145132132",
+          "address": "Rua Presidente Nereu Ramos, Centro, Lages, Santa Catarina",
+          "admission_date": "2019-01-12T02:00:00.000Z"
         }
       ]
     }

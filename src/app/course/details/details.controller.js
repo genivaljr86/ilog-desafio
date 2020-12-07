@@ -29,6 +29,11 @@
             "students": []
         }
 
+        const handleSearchStudents = results => {
+            let studentsIds = $scope.record.students.map(s => s.id);
+            return _.filter(results, result => !studentsIds.includes(result.id));
+        }
+
         vm.$onInit = function () {
             vm.loading = true;
 
@@ -61,12 +66,13 @@
             $scope.searchStudent = q => {
                 return StudentService.query({ name_like: q })
                     .then(response => {
-                        return response.data;
+                        return handleSearchStudents(response.data)
                     })
             }
 
-            $scope.insertStudent = student => {
+            $scope.selectStudent = student => {
                 $scope.record.students.push(student);
+                $scope.studentSelected = "";
             }
 
             $scope.removeStudent = index => {
@@ -86,6 +92,13 @@
                     .finally(() => {
                         $scope.loading = false;
                     });
+            }
+
+            $scope.remove = id => {
+                CourseService.remove($state.params.id)
+                    .then(response => {
+                        $state.go("course-index");
+                    })
             }
         }
     };
