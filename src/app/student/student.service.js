@@ -8,9 +8,10 @@
                     url: 'http://localhost:3004/students/' + id
                 })
             },
-            'query': function(){
+            'query': function(params){
                 return $http({
                     method: 'GET',
+                    params: params,
                     url: 'http://localhost:3004/students'
                 });
             },
