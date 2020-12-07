@@ -16,6 +16,13 @@
       "phone": "11145132132",
       "address": "Rua Presidente Nereu Ramos, Centro, Lages, Santa Catarina",
       "admission_date": "2019-01-12T02:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "José Haroldo da Conceição",
+      "phone": "5512154511",
+      "address": "Avenida Almirante Barroso, Marco, Belém, Pará",
+      "admission_date": "2020-05-26T03:00:00.000Z"
     }
   ],
   "courses": [
@@ -55,6 +62,13 @@
           "phone": "11145132132",
           "address": "Rua Presidente Nereu Ramos, Centro, Lages, Santa Catarina",
           "admission_date": "2019-01-12T02:00:00.000Z"
+        },
+        {
+          "id": 3,
+          "name": "José Haroldo da Conceição",
+          "phone": "5512154511",
+          "address": "Avenida Almirante Barroso, Marco, Belém, Pará",
+          "admission_date": "2020-05-26T03:00:00.000Z"
         }
       ]
     }

@@ -20,6 +20,7 @@
                             <th scope="col">Descrição</th>
                             <th scope="col">Carga Horária</th>
                             <th scope="col">Valor</th>
+                            <th scope="col">Alunos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,11 @@
                             <td>{{course.description}}</td>
                             <td>{{course.workload}}</td>
                             <td>R${{course.value}}</td>
+                            <td >
+                                <ul class="padding-l-20">
+                                    <li data-ng-repeat="student in course.students">{{student.name}}</li>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
