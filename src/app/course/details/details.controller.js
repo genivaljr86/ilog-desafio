@@ -34,6 +34,14 @@
 
             $scope.selectedStudents = [];
 
+            $scope.modelOptions = {
+                debounce: {
+                    default: 500,
+                    blur: 250
+                },
+                getterSetter: true
+            };
+
             $q
                 .all({
                     course: isCreate ? [] : CourseService.get($state.params.id),
@@ -49,6 +57,13 @@
                 .finally(() => {
                     $scope.loading = false;
                 });
+
+            $scope.searchStudent = q => {
+                return StudentService.query({ name_like: q })
+                    .then(response => {
+                        return response.data;
+                    })
+            }
 
             $scope.insertStudent = student => {
                 $scope.record.students.push(student);

@@ -46,15 +46,7 @@
       "description": "Curso de automatização de testes E2E",
       "workload": "240",
       "value": "22.00",
-      "students": [
-        {
-          "id": 1,
-          "name": "João Doe 1",
-          "phone": "55523612113",
-          "address": "Rua Bocaiuva, 57",
-          "admission_date": "22/04/2012"
-        }
-      ]
+      "students": []
     },
     {
       "id": 2,
