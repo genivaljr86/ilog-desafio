@@ -1,12 +1,10 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alunos</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 <div class="row">
     <div class="col-xl-12">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
+            <!-- Card Header -->
             <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Lista de Alunos</h6>
@@ -26,40 +24,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="student in students" ui-sref="student-details(student)">
+                        <tr data-ng-repeat="student in students" ui-sref="student-details(student)" class="hover">
                             <th scope="row">{{student.id}}</th>
                             <th>{{student.name}}</th>
                             <td>{{student.phone}}</td>
                             <td>{{student.address}}</td>
-                            <td>{{student.admission_date}}</td>
+                            <td>{{student.admission_date| date:'dd/MM/yyyy'}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <!-- <div class="col">
-        <h2>Alunos</h2>
-        <a ui-sref="student-add">Novo Aluno</a>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Data de Admissão</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="student in students" ui-sref="student-details(student)">
-                    <th scope="row">{{student.id}}</th>
-                    <th>{{student.name}}</th>
-                    <td>{{student.phone}}</td>
-                    <td>{{student.address}}</td>
-                    <td>{{student.admission_date}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
 </div>

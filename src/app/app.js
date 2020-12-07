@@ -4,7 +4,8 @@
     angular.module('app', [
         'ui.router',
         'ui.utils.masks',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        // 'recepuncu.ngSweetAlert2'
     ]);
 })();
 

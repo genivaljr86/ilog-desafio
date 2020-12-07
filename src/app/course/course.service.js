@@ -27,6 +27,12 @@
                     url: 'http://localhost:3004/courses/',
                     data: data
                 })
+            },
+            'remove': function (id) {
+                return $http({
+                    method: 'DELETE',
+                    url: 'http://localhost:3004/courses/' + id,
+                })
             }
         }
     }]);

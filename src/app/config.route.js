@@ -10,7 +10,14 @@
                 $urlRouterProvider
             ) {
 
-                $urlRouterProvider.when('/', '/student');
+                $urlRouterProvider.when('/', '/home');
+
+                $stateProvider.state({
+                    name: 'home',
+                    url: '/home',
+                    templateUrl: 'home/home.html',
+                    controller: 'HomeCtrl'
+                });
 
                 $stateProvider.state({
                     name: 'student-index',

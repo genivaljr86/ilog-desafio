@@ -28,6 +28,12 @@
                     url: 'http://localhost:3004/students/',
                     data: data
                 })
+            },
+            'remove': function (id) {
+                return $http({
+                    method: 'DELETE',
+                    url: 'http://localhost:3004/students/' + id
+                })
             }
         }
     }]);
