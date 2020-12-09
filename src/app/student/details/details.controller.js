@@ -8,6 +8,7 @@
         '$state',
         '$q',
         '$http',
+        'SweetAlert2'
     ];
 
     function StudentDetailsCtrl(
@@ -16,6 +17,7 @@
         $state,
         $q,
         $http,
+        SweetAlert2,
     ) {
         var vm = this;
 
@@ -74,11 +76,14 @@
 
                 StudentService[isCreate ? 'insert' : 'update'](record)
                     .then(response => {
-                        $state.go("student-index");
+                        SweetAlert2.success(isCreate ? 'Aluno criado com sucesso!': 'Aluno atualizado com sucesso!')
+                          .then((result) => {
+                            $state.go("student-index");
+                          });
 
                     })
                     .catch(response => {
-                        alert(response.message);
+                        SweetAlert2.error('Houve um problema, por favor tente mais tarde')
                     })
                     .finally(() => {
                         $scope.loading = false;
@@ -88,13 +93,24 @@
             $scope.remove = id => {
                 $scope.loading = true;
 
-                StudentService.remove($state.params.id)
-                    .then(response => {
-                        $state.go("student-index");
-                    })
-                    .finally(() => {
-                        $scope.loading = false;
-                    })
+                SweetAlert2.remove('Você tem certeza que deseja deletar esse registro?')
+                  .then((result) => {
+                    if (result.value) {
+                        StudentService.remove($state.params.id)
+                            .then(response => {
+                                SweetAlert2.success('Aluno deletado com sucesso!')
+                                  .then((result) => {
+                                    $state.go("student-index");
+                                  });
+                            })
+                            .catch(response => {
+                                SweetAlert2.error('Houve um problema, por favor tente mais tarde');
+                            })
+                            .finally(() => {
+                                $scope.loading = false;
+                            })
+                    }
+                  });
             }
 
 

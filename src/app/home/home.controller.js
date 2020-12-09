@@ -2,10 +2,14 @@
     'use strict';
     angular.module('app').controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope'];
+    HomeCtrl.$inject = [
+        '$scope'
+    ];
 
-    function HomeCtrl($scope) {
-        var vm = this; 
+    function HomeCtrl(
+        $scope
+    ) {
+        var vm = this;
     }
 
 })();

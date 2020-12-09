@@ -1,5 +1,4 @@
 [
-    "./node_modules/angularjs-sweetalert2/node_modules/sweetalert2/dist/sweetalert2.js",
     "./node_modules/angular/angular.min.js",
     "./node_modules/@uirouter/angularjs/release/angular-ui-router.js",
     "./node_modules/angular-route/angular-route.js",
@@ -9,5 +8,5 @@
     "./node_modules/ui-bootstrap4/dist/ui-bootstrap.js",
     "./node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js",
     "./node_modules/lodash/lodash.js",
-    "./src/app/**/*.js"
+    "./node_modules/sweetalert2/dist/sweetalert2.all.js"
 ]

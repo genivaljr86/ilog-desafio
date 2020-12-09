@@ -84,7 +84,13 @@
 
                 CourseService[isCreate ? 'insert' : 'update'](record)
                     .then(response => {
-                        $state.go("course-index");
+                        Swal.fire({
+                            icon: 'success',
+                            title: isCreate ? 'Aluno criado com sucesso!': 'Aluno atualizado com sucesso!',
+                            showConfirmButton: true
+                          }).then((result) => {
+                              $state.go("course-index");
+                          });
                     })
                     .catch(response => {
                         alert('ERRO!');
